@@ -50,4 +50,4 @@ $ npm run test
 ```
 
 You can find a detailed explanation in this medium article
-https://medium.com/@sivvio.piccolo/building-a-ready-for-production-microservice-in-nestjs-part-1-creating-a-template-bd59faf15e9b
+https://medium.com/@sivvio.piccolo/building-a-ready-for-production-microservice-in-nestjs-writing-an-authorization-microservice-bc64df815431
