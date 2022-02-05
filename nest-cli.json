@@ -1,0 +1,13 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "assets": [
+      {
+        "include": "../notifications/email-templates/**/*.hbs",
+        "outDir": "dist/notifications"
+      }
+    ],
+    "watchAssets": true
+  }
+}
