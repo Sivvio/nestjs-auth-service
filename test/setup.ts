@@ -14,7 +14,7 @@ let db;
 let dbBackup;
 
 declare global {
-    var signin: (email?: string, password?: string) => Promise<string[]>;
+    var signin: (email?: string, password?: string) => Promise<void>;
 }
 
 beforeAll(async () => {
@@ -114,7 +114,4 @@ global.signin = async (email = 'test@test.com', password = 'password') => {
 
     // set status to active
     await User.update(signUpResponse.body as User, {status: UserStatus.ACTIVE});
-
-    // return jwt
-    return signUpResponse.headers.authorization;
 };
