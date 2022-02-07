@@ -25,8 +25,8 @@ export class JwtUtilService {
 
     signSignUpJwt(user: User): string {
         return this.jwtService.sign({sub: user.id}, {
-            expiresIn: '1d',
-            secret: this.configService.get('jwt.signUpExpiresIn')
+            expiresIn: this.configService.get('jwt.signUpExpiresIn'),
+            secret: this.configService.get('jwt.signupSecret')
         });
     }
 
