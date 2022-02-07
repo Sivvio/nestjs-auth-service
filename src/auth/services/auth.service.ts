@@ -62,7 +62,7 @@ export class AuthService {
         const passwordMatch = await this.hashUtilService.doesPasswordMatch(signinDto.password, existing.password);
 
         if (!passwordMatch) {
-            throw new ConflictException();
+            throw new UnauthorizedException();
         }
 
         return existing;

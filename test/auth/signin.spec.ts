@@ -63,3 +63,39 @@ it('returns 401 when a user tries login with an inactive account', async () => {
 
     expect(sendSignUpConfirmationEmail).toHaveBeenCalledTimes(0);
 });
+
+it('returns 404 when a user is not found', async () => {
+    await request(testApp.getHttpServer())
+        .post('/auth/signin')
+        .send({
+            email: 'nonExistingEmail@email.com',
+            password: 'password',
+        })
+        .expect(404);
+
+});
+
+it('returns 404 when passwords do not match', async () => {
+
+    const email = 'test@test.com';
+    const password = 'mypassword';
+
+    const signUpResponse = await request(testApp.getHttpServer())
+        .post('/auth/signup')
+        .send({
+            email,
+            password
+        })
+        .expect(201);
+
+    const user = signUpResponse.body as User;
+    await User.update(user, {status: UserStatus.ACTIVE});
+
+    await request(testApp.getHttpServer())
+        .post('/auth/signin')
+        .send({
+            email,
+            password: 'newPassword'
+        })
+        .expect(401);
+});
